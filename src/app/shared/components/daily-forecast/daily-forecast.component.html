@@ -1,0 +1,40 @@
+<div class="daily-container">
+  <div class="day">
+    <h3 class="day-name">Today</h3>
+    <p class="sub-info">25/04</p>
+  </div>
+
+  <div class="temperature">
+    <img src="" alt="img"/>
+    <div class="temp-info">
+      <p>14.6°C</p>
+      <p class="sub-info">6°C</p>
+    </div>
+  </div>
+
+  <div class="weather-description">
+    Patchy rain nearby
+  </div>
+
+  <div class="additional-info-wrapper" [class.open]="addInfoOpen()">
+    <img
+      (click)="openAdditionalInfo()"
+      class="arrow-up"
+      src="../../../assets/svgs/arrow-up.svg"
+      alt="img"
+    />
+
+    <div class="additional-info-items" [class.open]="addInfoOpen()">
+      <div class="info-item">
+        <p><span>Wind</span> 7.6 km/h</p>
+        <p><span>Rain</span> 87 %</p>
+      </div>
+      <div class="info-item">
+        <p><span>Humidity</span> 82 %</p>
+        <p><span>Snow</span> 0 %</p>
+      </div>
+
+      <a class="see-detailed" routerLink="/hourly">See hourly ></a>
+    </div>
+  </div>
+</div>
