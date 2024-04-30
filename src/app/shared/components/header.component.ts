@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import {Component, signal, WritableSignal} from '@angular/core';
 
 @Component({
   selector: 'app-header',
   template: `
     <header id="header">
-        <div class="container">
-          <h2 id="header-title">Weather app</h2>
-          <div class="dark-mode">Icon</div>
+      <div class="container">
+        <h2 id="header-title">Weather app</h2>
+        <div class="dark-mode" (click)="toggleTheme()">
+          <img
+            [src]="theme() === 'dark'
+            ? '../../../assets/svgs/sun.svg'
+            : '../../../assets/svgs/moon.svg'"/>
         </div>
+      </div>
     </header>
   `,
   standalone: true,
@@ -26,7 +31,9 @@ import { Component } from '@angular/core';
         }
 
         .dark-mode {
-          background: var(--orange);
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
         }
 
         @media screen and (max-width: 520px) {
@@ -39,5 +46,19 @@ import { Component } from '@angular/core';
   `,
 })
 export class HeaderComponent {
+  theme: WritableSignal<string> = signal("dark");
 
+  constructor() {
+    const savedTheme: string | null = localStorage.getItem("theme");
+
+    savedTheme
+      ? this.theme.set(savedTheme)
+      : localStorage.setItem("theme", this.theme());
+  }
+
+  toggleTheme(): void {
+    this.theme.set(this.theme() === 'light' ? 'dark' : 'light');
+
+    localStorage.setItem('theme', this.theme());
+  }
 }

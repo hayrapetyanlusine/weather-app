@@ -1,5 +1,8 @@
-<div class="weather-app">
-  <app-header />
-  <router-outlet />
-  <app-footer />
+<div
+  class="weather-app"
+  [attr.data-theme]="localStorage.getItem('theme') || 'dark'"
+>
+  <app-header/>
+  <router-outlet/>
+  <app-footer/>
 </div>

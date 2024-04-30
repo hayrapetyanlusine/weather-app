@@ -39,7 +39,7 @@ import { Component } from '@angular/core';
 
       .special-city-info {
         background: var(--primeryLight);
-        color: var(--white);
+        color: var(--n-white);
         border-radius: 8px;
         padding: 30px;
         display: flex;
@@ -56,7 +56,7 @@ import { Component } from '@angular/core';
         }
 
         .timestamp {
-          color: var(--gray);
+          color: var(--n-white);
         }
 
         .weather-info {

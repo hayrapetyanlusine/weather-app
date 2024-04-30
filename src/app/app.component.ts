@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 import {HeaderComponent} from "./shared/components/header.component";
 import {FooterComponent} from "./shared/components/footer.component";
 
@@ -11,5 +11,5 @@ import {FooterComponent} from "./shared/components/footer.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'weather-app';
+  protected readonly localStorage = localStorage;
 }

@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 
-export let routes = undefined;
-
-
 @Component({
   selector: 'app-hourly-info',
   standalone: true,
