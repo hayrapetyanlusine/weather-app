@@ -1,34 +1,36 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {WeatherService} from "../../services/weather.service";
 
 @Component({
   selector: 'app-city-weather',
   template: `
-    <div class="special-city-info">
-      <h3 class="city-name">New York</h3>
-      <p class="location">Armenia :)</p>
-      <p class="timestamp">Thu 25/04/24 8:35 PM</p>
+    @if (canRender()) {
+      <div class="special-city-info">
+        <h3 class="city-name">{{ location.name }}</h3>
+        <p class="location">{{ location.region }}, {{ location.country }}</p>
+        <p class="timestamp">{{ location.localtime }} PM</p>
 
-      <div class="weather-info">
-        <img class="weather-icon" src="" alt="img"/>
-        <p class="temperature"> Sunny <br/> 13.8°C</p>
+        <div class="weather-info">
+          <img class="weather-icon" [src]="current.condition.icon" alt="img"/>
+          <p class="temperature"> {{ current.condition.text }} <br/> {{ current.temp_c }}°C</p>
+        </div>
+
+        <div class="additional-info">
+          <div class="info-item">
+            <p>Real feel</p>
+            <p>{{ current.feelslike_c }}°C</p>
+          </div>
+          <div class="info-item">
+            <p>Wind</p>
+            <p>{{ current.wind_kph }} km/h</p>
+          </div>
+          <div class="info-item">
+            <p>Humidity</p>
+            <p>{{ current.humidity }}%</p>
+          </div>
+        </div>
       </div>
-
-      <div class="additional-info">
-        <div class="info-item">
-          <p>Real feel</p>
-          <p>14.1°C</p>
-        </div>
-        <div class="info-item">
-          <p>Wind</p>
-          <p>5 km/h</p>
-        </div>
-        <div class="info-item">
-          <p>Humidity</p>
-          <p>61%</p>
-        </div>
-      </div>
-    </div>
-
+    }
   `,
   standalone: true,
   imports: [],
@@ -94,5 +96,20 @@ import { Component } from '@angular/core';
   `
 })
 export class CityWeatherComponent {
+  weatherService = inject(WeatherService);
 
+  location: any;
+  current: any;
+
+  canRender() {
+    const weatherData = this.weatherService.countryWeather();
+
+    if (weatherData) {
+      this.location = weatherData.location;
+      this.current = weatherData.current;
+      return true;
+    }
+
+    return false;
+  }
 }

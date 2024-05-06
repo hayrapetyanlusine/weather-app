@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {SearchComponent} from "../../shared/components/search.component";
 import {DailyForecastComponent} from "../../shared/components/daily-forecast/daily-forecast.component";
 import {CityWeatherComponent} from "../../shared/components/city-weather.component";
+import {WeatherService} from "../../services/weather.service";
 
 @Component({
   selector: 'app-weather-today-info',
@@ -19,9 +20,13 @@ import {CityWeatherComponent} from "../../shared/components/city-weather.compone
         <div class="city-weather-wrapper">
           <app-city-weather/>
 
-          <div class="daily-wrapper">
-            <app-daily-forecast/>
-          </div>
+          @if(canRender()) {
+            <div class="daily-wrapper">
+              @for (forecast of forecasts.forecastday; track forecast) {
+                <app-daily-forecast [dayForecast]="forecast" [weekdayName]="forecast.date"/>
+              }
+            </div>
+          }
         </div>
       </div>
     </div>
@@ -30,6 +35,7 @@ import {CityWeatherComponent} from "../../shared/components/city-weather.compone
     .app-content-wrapper {
       padding: 16px 24px;
       background: var(--primery);
+      /*height: 100%;*/
 
       .container {
         display: flex;
@@ -62,5 +68,18 @@ import {CityWeatherComponent} from "../../shared/components/city-weather.compone
   `
 })
 export class WeatherTodayInfoComponent {
+  weatherService = inject(WeatherService);
 
+  forecasts: any;
+
+  canRender() {
+    const weatherData = this.weatherService.countryWeather();
+
+    if (weatherData) {
+      this.forecasts = weatherData.forecast;
+      return true;
+    }
+
+    return false;
+  }
 }

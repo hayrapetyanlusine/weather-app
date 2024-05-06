@@ -110,7 +110,6 @@ export class SearchComponent implements OnInit {
       map((resp: any) => resp as Suggestion[])
     ).subscribe(resp => {
       this.countries.set(resp);
-      console.log(resp);
     })
   }
 
@@ -123,7 +122,7 @@ export class SearchComponent implements OnInit {
 
     this.weatherService.getCurrentWeatherData(`${lat},${lon}`)
       .subscribe((weatherData: any) => {
-        this.weatherService.countryWeather.set(weatherData);
+        this.weatherService.setWeatherData(weatherData);
         this.countries.set([]);
         this.searchControl.setValue("");
       });

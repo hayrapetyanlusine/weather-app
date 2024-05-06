@@ -1,20 +1,18 @@
 <div class="daily-container">
   <div class="day">
-    <h3 class="day-name">Today</h3>
-    <p class="sub-info">25/04</p>
+    <h3 class="day-name">{{ getWeekdayName() }}</h3>
+    <p class="sub-info">{{dayForecast()?.date | date:'dd/MM'}}</p>
   </div>
 
   <div class="temperature">
-    <img src="" alt="img"/>
+    <img [src]="dayForecast()?.day!.condition.icon" alt="img"/>
     <div class="temp-info">
-      <p>14.6°C</p>
-      <p class="sub-info">6°C</p>
+      <p>{{ dayForecast()?.day!.maxtemp_c }}°C</p>
+      <p class="sub-info">{{ dayForecast()?.day!.mintemp_c }}°C</p>
     </div>
   </div>
 
-  <div class="weather-description">
-    Patchy rain nearby
-  </div>
+  <div class="weather-description"> {{ dayForecast()?.day!.condition.text }}</div>
 
   <div class="additional-info-wrapper" [class.open]="addInfoOpen()">
     <img
@@ -26,12 +24,12 @@
 
     <div class="additional-info-items" [class.open]="addInfoOpen()">
       <div class="info-item">
-        <p><span>Wind</span> 7.6 km/h</p>
-        <p><span>Rain</span> 87 %</p>
+        <p><span>Wind</span> {{ dayForecast()?.day!.maxwind_kph }} km/h</p>
+        <p><span>Rain</span> {{ dayForecast()?.day!.daily_will_it_rain }} %</p>
       </div>
       <div class="info-item">
-        <p><span>Humidity</span> 82 %</p>
-        <p><span>Snow</span> 0 %</p>
+        <p><span>Humidity</span> {{ dayForecast()?.day!.avghumidity }} %</p>
+        <p><span>Snow</span> {{ dayForecast()?.day!.daily_chance_of_snow }} %</p>
       </div>
 
       <a class="see-detailed" routerLink="/hourly">See hourly ></a>
