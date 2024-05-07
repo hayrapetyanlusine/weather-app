@@ -95,4 +95,12 @@ export interface ForecastDay {
     moon_phase: string;
     moon_illumination: string;
   };
+  hour: HourForecast[];
+}
+
+interface HourForecast {
+  time: string;
+  temp_c: number;
+  wind_kph: number;
+  humidity: number;
 }

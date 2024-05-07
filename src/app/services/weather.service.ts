@@ -9,6 +9,7 @@ export class WeatherService {
   http: HttpClient = inject(HttpClient);
 
   countryWeather = signal<WeatherData | undefined>(undefined);
+  dailyWeather = signal<WeatherData | undefined>(undefined);
 
   API_KEY: string = '75b36898c1284f41a32114039240704';
   citySuggestionsURL: string = `https://api.weatherapi.com/v1/search.json?key=${this.API_KEY}&q=`;
@@ -24,5 +25,9 @@ export class WeatherService {
 
   setWeatherData(data: any) {
     this.countryWeather.set(data);
+  }
+
+  setDailyWeather(data: any) {
+    this.dailyWeather.set(data);
   }
 }

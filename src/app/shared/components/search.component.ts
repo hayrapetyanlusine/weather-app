@@ -4,6 +4,7 @@ import {WeatherService} from "../../services/weather.service";
 import {debounceTime, filter, map, switchMap} from "rxjs";
 import {Suggestion} from "../../interfaces/interface";
 import {AsyncPipe} from "@angular/common";
+import {yerevanData} from "../data/initial-city-data";
 
 @Component({
   selector: 'app-search',
@@ -101,6 +102,8 @@ export class SearchComponent implements OnInit {
   countries = signal<Suggestion[]>([]);
 
   ngOnInit() {
+    this.getCityWeather( yerevanData );
+
     this.searchControl.valueChanges.pipe(
       debounceTime(500),
       filter(city => city && city.trim() !== ''),
@@ -122,6 +125,8 @@ export class SearchComponent implements OnInit {
 
     this.weatherService.getCurrentWeatherData(`${lat},${lon}`)
       .subscribe((weatherData: any) => {
+        console.log(weatherData)
+
         this.weatherService.setWeatherData(weatherData);
         this.countries.set([]);
         this.searchControl.setValue("");

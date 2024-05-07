@@ -1,7 +1,7 @@
 <div class="daily-container">
   <div class="day">
     <h3 class="day-name">{{ getWeekdayName() }}</h3>
-    <p class="sub-info">{{dayForecast()?.date | date:'dd/MM'}}</p>
+    <p class="sub-info">{{ dayForecast()?.date | date:'dd/MM' }}</p>
   </div>
 
   <div class="temperature">
@@ -32,7 +32,8 @@
         <p><span>Snow</span> {{ dayForecast()?.day!.daily_chance_of_snow }} %</p>
       </div>
 
-      <a class="see-detailed" routerLink="/hourly">See hourly ></a>
+      <!--      <a class="see-detailed" routerLink="/hourly">See hourly ></a>-->
+      <a class="see-detailed" (click)="seeDetailed(dayForecast()?.hour)">See hourly ></a>
     </div>
   </div>
 </div>

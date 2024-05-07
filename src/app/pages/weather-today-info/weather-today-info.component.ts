@@ -35,7 +35,6 @@ import {WeatherService} from "../../services/weather.service";
     .app-content-wrapper {
       padding: 16px 24px;
       background: var(--primery);
-      /*height: 100%;*/
 
       .container {
         display: flex;

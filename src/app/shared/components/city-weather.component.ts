@@ -6,19 +6,21 @@ import {WeatherService} from "../../services/weather.service";
   template: `
     @if (canRender()) {
       <div class="special-city-info">
-        <h3 class="city-name">{{ location.name }}</h3>
-        <p class="location">{{ location.region }}, {{ location.country }}</p>
-        <p class="timestamp">{{ location.localtime }} PM</p>
+        <div class="main-info">
+          <h3 class="city-name">{{ location.name }}</h3>
+          <p class="location">{{ location.region }}, {{ location.country }}</p>
+          <p class="timestamp">{{ location.localtime }} PM</p>
+        </div>
 
         <div class="weather-info">
           <img class="weather-icon" [src]="current.condition.icon" alt="img"/>
-          <p class="temperature"> {{ current.condition.text }} <br/> {{ current.temp_c }}°C</p>
+          <p class="temperature"> {{ current.condition.text }} <br/> {{ current.temp_c }} °C</p>
         </div>
 
         <div class="additional-info">
           <div class="info-item">
             <p>Real feel</p>
-            <p>{{ current.feelslike_c }}°C</p>
+            <p>{{ current.feelslike_c }} °C</p>
           </div>
           <div class="info-item">
             <p>Wind</p>
@@ -26,7 +28,7 @@ import {WeatherService} from "../../services/weather.service";
           </div>
           <div class="info-item">
             <p>Humidity</p>
-            <p>{{ current.humidity }}%</p>
+            <p>{{ current.humidity }} %</p>
           </div>
         </div>
       </div>
@@ -46,7 +48,15 @@ import {WeatherService} from "../../services/weather.service";
         padding: 30px;
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        justify-content: space-between;
+        gap: 30px;
+        height: 100%;
+
+        .main-info {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
 
         .city-name {
           font-size: 38px;
