@@ -101,6 +101,37 @@ import {WeatherService} from "../../services/weather.service";
             }
           }
         }
+
+        @media screen and (max-width: 520px) {
+          padding: 20px;
+
+          .city-name {
+            font-size: 28px;
+          }
+
+          .location {
+            font-size: 18px;
+          }
+
+          .weather-info {
+            gap: 10px;
+
+            .weather-icon {
+              width: 60px;
+              height: 60px;
+            }
+
+            .temperature {
+              font-size: 26px;
+            }
+          }
+
+          .additional-info {
+            .info-item {
+              font-size: 18px;
+            }
+          }
+        }
       }
     }
   `

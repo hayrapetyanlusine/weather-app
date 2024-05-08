@@ -2,7 +2,6 @@ import {Component, inject, input, signal} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {ForecastDay} from "../../../interfaces/interface";
 import {DatePipe} from "@angular/common";
-import {WeatherService} from "../../../services/weather.service";
 
 @Component({
   selector: 'app-daily-forecast',
@@ -20,7 +19,6 @@ export class DailyForecastComponent {
   addInfoOpen = signal(false);
 
   router = inject(Router);
-  weatherService = inject(WeatherService);
 
   openAdditionalInfo(): void {
     this.addInfoOpen.set(!this.addInfoOpen());
@@ -35,8 +33,7 @@ export class DailyForecastComponent {
   seeDetailed(data: any) {
     this.router.navigate(['/hourly'])
       .then(r => {
-        this.weatherService.setDailyWeather(data);
-        console.log("pass data", data);
+        localStorage.setItem('dailyWeather', JSON.stringify(data));
       });
   }
 }

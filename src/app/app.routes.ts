@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {WeatherTodayInfoComponent} from "./pages/weather-today-info/weather-today-info.component";
+import {WeatherTodayInfoComponent} from "./pages/weather-today-info.component";
 import {NotFoundComponent} from "./pages/not-found.component";
 
 export const routes: Routes = [

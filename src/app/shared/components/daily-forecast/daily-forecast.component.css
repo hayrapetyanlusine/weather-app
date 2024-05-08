@@ -99,4 +99,22 @@
       }
     }
   }
+
+  @media screen and (max-width: 480px) {
+    gap: 20px;
+    font-size: 18px;
+
+    .temperature {
+      gap: 5px;
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .weather-description {
+      max-width: 90px;
+    }
+  }
 }

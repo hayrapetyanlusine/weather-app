@@ -1,1 +1,5 @@
 
+.weather-app {
+  background-color: var(--primery);
+  height: 100%;
+}

@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
-import {SearchComponent} from "../../shared/components/search.component";
-import {DailyForecastComponent} from "../../shared/components/daily-forecast/daily-forecast.component";
-import {CityWeatherComponent} from "../../shared/components/city-weather.component";
-import {WeatherService} from "../../services/weather.service";
+import {SearchComponent} from "../shared/components/search.component";
+import {DailyForecastComponent} from "../shared/components/daily-forecast/daily-forecast.component";
+import {CityWeatherComponent} from "../shared/components/city-weather.component";
+import {WeatherService} from "../services/weather.service";
 
 @Component({
   selector: 'app-weather-today-info',
@@ -54,7 +54,7 @@ import {WeatherService} from "../../services/weather.service";
             width: 100%;
           }
 
-          @media screen and (max-width: 900px) {
+          @media screen and (max-width: 940px) {
             flex-wrap: wrap;
           }
         }
